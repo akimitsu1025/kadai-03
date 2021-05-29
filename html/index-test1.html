@@ -1,0 +1,29 @@
+<!--実行した方法：①-->>
+<!--▶︎検索ボタンをクリックしてもアラートが表示されませんでした。-->>
+
+<html>
+    <head>
+        <title>eelテスト：</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!- # 1
+        HTMを使い検索ワード入力と検索ボタンを作ってください
+        htmlフォルダ内のindex.htmlに対してHTMLタグを用いて追加してください->
+        <h2>eelテスト：</h2>
+        <input id="sbox1" id="search" name="search" type="text" placeholder="検索ワードを入力" />
+        <input id="sbtn1" type="submit" value="検索" /></form>
+        
+        <!- # 2
+        検索ワード入力が空だったらアラートを表示させ、検索はしないようにしてください->
+
+
+        <script>
+            let button = document.querySelector('sbtn1');
+            sbtn1.addEventListener('click',function(){
+            alert('検索ワードを入力してください');
+            });
+        </script>
+
+    </body>
+</html>
