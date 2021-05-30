@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title>eelテスト：</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <!- # 1
+        HTMを使い検索ワード入力と検索ボタンを作ってください
+        htmlフォルダ内のindex.htmlに対してHTMLタグを用いて追加してください->
+        <h2>eelテスト：</h2>
+
+
+        <form name="form1" action="cgi-bin/example.cgi" method="post">
+            <p>検索したいキーワードを入力してください。</p>
+            <input type="search" name="search" placeholder="キーワードを入力">
+            <input type="submit" name="submit" value="検索" onclick="return check();">
+        </form>
+        
+        <!- # 2
+        検索ワード入力が空だったらアラートを表示させ、検索はしないようにしてください->
+        <script type="text/javascript">
+            function check(){
+                if (document.form1.search.value == "") {
+                    alert("検索ワードを入力してください");
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+        </script>
+    </body>
+</html>

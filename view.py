@@ -4,7 +4,7 @@ import desktop
 import search
 
 app_name="html"
-end_point="index.html"
+end_point="index-test3.html"
 size=(700,600)
 
 @ eel.expose
