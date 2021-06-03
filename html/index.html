@@ -4,23 +4,126 @@
         <link rel="stylesheet" href="./style.css">
     </head>
     <body>
-        <!- # 1
-        HTMを使い検索ワード入力と検索ボタンを作ってください
-        htmlフォルダ内のindex.htmlに対してHTMLタグを用いて追加してください->
         <h2>eelテスト：</h2>
-        <input id="sbox1" id="search" name="search" type="text" placeholder="検索ワードを入力" />
-        <input id="sbtn1" type="submit" value="検索" /></form>
-        
-        <!- # 2
-        検索ワード入力が空だったらアラートを表示させ、検索はしないようにしてください->
+        <!--#1 HTMを使い検索ワード入力と検索ボタンを作ってください。htmlフォルダ内のindex.htmlに対してHTMLタグを用いて追加してください。-->
+        <div class="">
+        <form name="form1" action="cgi-bin/example.cgi" method="post">
+            <p>検索したいキーワードを入力してください。</p>
+            <input type="text" id="csv_name" placeholder="CSV名を入力"></input><br/>
+            <input type="text" name='search_word' id='search_word' placeholder="検索ワードを入力">
+            <input type="button" name="button" id="button" value="検索">
+        </form>
+        </div>
 
+        <div>
+            <textarea class="log-view-area" id="result"></textarea>
+        </div>
+
+        <!--#4 作成したログ表示領域にkimetsu_searchの結果を表示できるようにしてください--> 
+        <script type="text/javascript" src="./eel.js"></script>
         <script>
-            search.addEventListener('click', () => {
-            alert('検索ワードを入力してください');
+            button.addEventListener('click', () => {
+                eel.kimetsu_search(search_word.value,csv_name.value)
             })
+
             eel.expose(view_log_js)
             function view_log_js(text){
+                result.value += text + "\n"
+            }
+        </script>
+
+        <script type="text/javascript">
+            function check(){
+                //# 3 検索結果をデスクトップアプリの画面に表示できるようにtextareaタグを使ってログ表示領域を作成してください。（+30行目<textarea>の行）
+                var UserString = document.getElementById('search_word').value;
+                document.getElementById('result').value += UserString + "\n";
+                //# 2 検索ワード入力が空だったらアラートを表示させ、検索はしないようにしてください。
+                if (document.form1.search_word.value == "") {
+                    alert("検索ワードを入力してください");
+                    return false;
+                }
+                else {
+                    return true;
+                }
             }
         </script>
     </body>
 </html>
+
+
+
+
+<!--現状の課題
+
+① #4作成したログ表示領域にkimetsu_searchの結果を表示できるようにしてください
+▶︎#4を入力したけど、「{}はいます」にならない。
+・関数が実行されていない？
+・source.csvと連動していない？
+・eel.kimetsu_searchで呼び出せるのでは？
+・#3の処理は#4に上書きされる？
+
+② #5ログ表示領域が小さいので大きく表示できるようにclassを定義して、style.cssに処理を記述してください
+▶︎18行目付近の<div class="log-view-area">でクラスを指定して、
+style.csvファイルで処理。
+これでよいか？👉反応しない。
+
+③ #6CSVファイルの保存先をHTML画面から指定できるようにしてください
+▶︎12行目付近の処理でcsvを入力させて、
+search.pyでPadasを用いて「CSV書き込み」をすればよいか？
+
+④ #7
+Pyinstallerを使って、１つの実行可能ファイルにパッケージ化してみよう。  
+pipでインストール後に以下コマンドを実行してみよう。
+distフォルダに実行可能フィイルが格納されます。
+顧客提供時は、このファイルを提供することでpythonのインストールは不要になります。
+`python -m eel <はじめに起動するpyファイル> <htmlのフォルダ名> --onefile`
+▶︎「パッケージ化」？→モジュールをまとめたもの？
+「distフォルダ」？
+。。。
+これはMacでもできるか？
+「PyinstallerとはPythonファイルをexe化するためのライブラリ。
+exe化とは、Windows環境における実行形式のファイルにすること。」
+。。。
+やることの確認
+pip3 install pyinstallerでPyinstallerをインストール。
+その後のヒントをいただきたい。。
+
+
+
+★連動のイメージがうまく掴めない。py同士であればimport。
+pyファイル　 ：3つ
+htmlファイル ：1つ
+cssファイル　：1つ
+csvファイル　：1つ
+→eel、expose
+
+
+
+【質問】
+
+★div class=""
+class名はなくていいのか？
+また、ないときは何を意味する？
+
+★ ライブラリのインストール（Pandas、eel）は、ファイルごとにする必要がある？今回は2つ？
+pip3 install　〜
+
+★ gitignoreはできている？
+不要ファイルは削除してOK？
+ng_ignore.txt
+ok_ignore.txt
+。。。
+「.gitignore」ファイルは残したまま？
+「.gitignore」ファイルはVSCodeの拡張機能なので、常にフォルダにあるのか？それとも毎度インストールする必要があるか？
+「.gitignore.swp」とは？どうすればよいか？
+
+
+★ 提出する際は一つのファイルのみ？
+　今はフォルダごと送っているけど。
+
+★ 米谷さんは何の言語から習得されたか？
+PHPを知ると、プログラムが動く原理を理解できると言われた。
+
+★ワードプレス、タグ削除の相談（可能なら）
+
+-->
